@@ -1,0 +1,40 @@
+# Ignore everything by default
+*
+
+# Project root files
+!.gitignore
+!.dockerignore
+!.release-please-manifest.json
+!flake.nix
+!flake.lock
+!version.txt
+!pg_timers.control
+!release-please-config.json
+!docker-compose.yml
+!Dockerfile
+!Makefile
+!README.md
+
+# Source
+!src/
+!src/*.c
+!src/*.h
+
+# SQL
+!sql/
+!sql/*.sql
+
+# Tests
+!t/
+!t/*.sql
+!test/
+!test/*.sh
+
+# CI/CD
+!.github/
+!.github/workflows/
+!.github/workflows/*.yml
+
+# Docker
+!docker/
+!docker/*.sh
