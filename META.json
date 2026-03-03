@@ -1,0 +1,37 @@
+{
+  "name": "pg_timers",
+  "abstract": "Precise, low-latency timer scheduling for PostgreSQL",
+  "version": "0.0.0",
+  "maintainer": ["proventuslabs <proventuslabs@github>"],
+  "license": "postgresql",
+  "provides": {
+    "pg_timers": {
+      "abstract": "Precise, low-latency timer scheduling for PostgreSQL",
+      "file": "sql/pg_timers.sql",
+      "version": "0.0.0"
+    }
+  },
+  "prereqs": {
+    "runtime": {
+      "requires": {
+        "PostgreSQL": "15.0"
+      }
+    }
+  },
+  "resources": {
+    "bugtracker": {
+      "web": "https://github.com/proventuslabs/pg_timers/issues"
+    },
+    "repository": {
+      "url": "https://github.com/proventuslabs/pg_timers.git",
+      "web": "https://github.com/proventuslabs/pg_timers",
+      "type": "git"
+    }
+  },
+  "generated_by": "proventuslabs",
+  "meta-spec": {
+    "version": "1.0.0",
+    "url": "https://pgxn.org/meta/spec.txt"
+  },
+  "tags": ["timer", "scheduling", "background-worker", "citus"]
+}
