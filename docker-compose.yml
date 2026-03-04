@@ -3,7 +3,7 @@ services:
     build:
       context: .
       args:
-        PG_MAJOR: ${PG_MAJOR:-17}
+        PG_MAJOR: ${PG_MAJOR:-18}
     container_name: pg_timers-dev
     profiles: [dev, test]
     environment:
@@ -24,7 +24,7 @@ services:
     build:
       context: .
       args:
-        PG_MAJOR: ${PG_MAJOR:-17}
+        PG_MAJOR: ${PG_MAJOR:-18}
     profiles: [test]
     depends_on:
       dev:

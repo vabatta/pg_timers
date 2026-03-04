@@ -1,4 +1,5 @@
 comment = 'Precise, low-latency timer scheduling for PostgreSQL'
+# x-release-please-version
 default_version = '0.1.0'
 module_pathname = '$libdir/pg_timers'
 relocatable = false

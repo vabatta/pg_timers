@@ -18,7 +18,7 @@
           pg18 = pkgs.postgresql_18;
         };
 
-        defaultPg = pgVersions.pg17;
+        defaultPg = pgVersions.pg18;
 
         # Build a pg_config wrapper from nix-support metadata.
         # Newer nixpkgs splits PG outputs and no longer ships pg_config as a binary.

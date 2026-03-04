@@ -129,17 +129,56 @@ Set these in `postgresql.conf`. GUCs marked **postmaster** require a restart; **
 
 ## Installation
 
-### With Docker
+### Docker (recommended)
+
+Pre-built images are published to GHCR for PostgreSQL 15–18 on amd64 and arm64:
 
 ```sh
-docker build -t pg-timers --build-arg PG_MAJOR=17 .
 docker run -d --name pg \
   -e POSTGRES_PASSWORD=secret -e POSTGRES_DB=mydb \
-  pg-timers \
+  ghcr.io/vabatta/pg_timers:18 \
   -c shared_preload_libraries=pg_timers \
   -c pg_timers.database=mydb
 docker exec pg psql -U postgres -d mydb -c "CREATE EXTENSION pg_timers;"
 ```
+
+For a specific version: `ghcr.io/vabatta/pg_timers:18-0.1.0`
+
+### Kubernetes (CloudNativePG)
+
+pg_timers ships as a standalone extension image for CloudNativePG's [ImageVolume](https://cloudnative-pg.io/blog/building-images-bake/) feature:
+
+```yaml
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-with-timers
+spec:
+  imageName: ghcr.io/cloudnative-pg/postgresql:18
+  postgresql:
+    shared_preload_libraries: ["pg_timers"]
+    parameters:
+      pg_timers.database: "app"
+  pluginConfiguration:
+    imageVolumes:
+      - name: pg-timers
+        image: ghcr.io/vabatta/pg_timers-cnpg:18-latest
+  bootstrap:
+    initdb:
+      database: app
+      postInitSQL:
+        - CREATE EXTENSION pg_timers
+```
+
+See [`examples/cnpg-cluster.yaml`](examples/cnpg-cluster.yaml) for a full example.
+
+### PGXN
+
+```sh
+pgxn install pg_timers
+```
+
+Requires build tools and PostgreSQL development headers on the target machine.
 
 ### From Source
 
@@ -186,13 +225,12 @@ PG_MAJOR=16 make test
 ### Build From Source (Nix)
 
 ```sh
-nix develop          # enters shell with PG 17 + build tools
+nix develop          # enters shell with PG 18 + build tools
 make USE_PGXS=1      # compile
 
 # Other PG versions:
 nix develop .#pg15
-nix develop .#pg16
-nix develop .#pg18
+nix develop .#pg<version>
 ```
 
 ### Citus Setup

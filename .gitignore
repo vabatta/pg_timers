@@ -12,7 +12,10 @@
 !release-please-config.json
 !docker-compose.yml
 !Dockerfile
+!Dockerfile.release
+!Dockerfile.cnpg
 !Makefile
+!META.json
 !README.md
 
 # Source
@@ -38,3 +41,7 @@
 # Docker
 !docker/
 !docker/*.sh
+
+# Examples
+!examples/
+!examples/*.yaml

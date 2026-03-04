@@ -2,7 +2,7 @@ MODULE_big = pg_timers
 OBJS = src/pg_timers.o src/bgworker.o src/functions.o
 
 EXTENSION = pg_timers
-DATA = sql/pg_timers--0.1.0.sql
+DATA = $(wildcard sql/$(EXTENSION)--*.sql)
 
 PG_CPPFLAGS = -I$(srcdir)/src
 

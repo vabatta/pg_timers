@@ -4,7 +4,20 @@
       "release-type": "simple",
       "bump-minor-pre-major": true,
       "extra-files": [
-        "pg_timers.control"
+        {
+          "type": "generic",
+          "path": "pg_timers.control"
+        },
+        {
+          "type": "json",
+          "path": "META.json",
+          "jsonpath": "$.version"
+        },
+        {
+          "type": "json",
+          "path": "META.json",
+          "jsonpath": "$.provides.pg_timers.version"
+        }
       ]
     }
   }
